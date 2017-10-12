@@ -1,0 +1,67 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <h1>{{ job.position }}</h1>
+
+    <table class="table-responsive table-condensed">
+        <tbody>
+
+            <tr>
+                <th>Type</th>
+                <td>{{ job.type }}</td>
+            </tr>
+            <tr>
+                <th>Company</th>
+                <td>{{ job.company }}</td>
+            </tr>
+            <tr>
+                <th>Logo</th>
+                <td><img style="width: 130px" src="{{ asset('uploads/jobs/') }}{{ job.logo }}" alt="{{ job.company }}"></td>
+            </tr>
+            <tr>
+                <th>Url</th>
+                <td>{{ job.url }}</td>
+            </tr>
+            <tr>
+                <th>Position</th>
+                <td>{{ job.position }}</td>
+            </tr>
+            <tr>
+                <th>Location</th>
+                <td>{{ job.location }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ job.description }}</td>
+            </tr>
+            <tr>
+                <th>How to apply</th>
+                <td>{{ job.howToApply }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ job.email }}</td>
+            </tr>
+            <tr>
+                <th>Expires at</th>
+                <td>{% if job.expiresAt %}{{ job.expiresAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('job_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('job_edit', { 'id': job.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+
+{% endblock %}

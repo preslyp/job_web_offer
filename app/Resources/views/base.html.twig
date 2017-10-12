@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>{% block title %}Jobs.bg - Your best job board{% endblock %}</title>
+
+        {% block stylesheets %}
+            <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
+            <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
+            <link rel="stylesheet" href="{{ asset('css/font-awesome.min.css') }}">
+        {% endblock %}
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+    </head>
+    <body>
+
+    <!-- Header -->
+    <header class="masthead">
+        <div class="container header">
+            <div class="row">
+                <div class="col-md-8">
+                    <a href="{{ path('job_index') }}"><img class="img-fluid" src=" {{ asset('images/jm_logo.png') }}  " alt=""></a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div id="content">
+        {% if app.session.flashbag.has('notice') %}
+            {% for message in app.session.flashBag.get('notice') %}
+                <div class="flash_notice">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+
+        {% if app.session.flashbag.has('error') %}
+            {% for message in app.session.flashBag.get('error') %}
+                <div class="flash_error">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+
+        <div class="container jobs">
+            <div class="row">
+                <div class="col-md-12">
+
+                {% block body %}{% endblock %}
+
+                </div>
+            </div>
+        </div>
+
+        <div id="footer">
+            <div class="container">
+                    <ul>
+                        <li><a href="">About Jobeet</a></li>
+                        <li class="feed"><a href="">Full feed</a></li>
+                        <li><a href="">Jobeet API</a></li>
+                        <li class="last"><a href="">Affiliates</a></li>
+                    </ul>
+                </div>
+        </div>
+
+
+    </div>
+        {% block javascripts %}
+            <script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+            <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+        {% endblock %}
+    </body>
+</html>
