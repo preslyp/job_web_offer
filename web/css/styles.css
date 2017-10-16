@@ -47,6 +47,10 @@ li {
     padding: 10px;
 }
 
+span {
+    display: inline-block;
+}
+
 #footer
 {
     clear: both;

@@ -3,7 +3,13 @@
 {% block body %}
 
     <h1>{{ job.position }}</h1>
-
+    <span><a class="btn btn-default" href="{{ path('job_index') }}">Back to the list</a></span>
+    <span><a class="btn btn-default" href="{{ path('job_edit', { 'id': job.id }) }}">Edit</a></span>
+    <span>
+        {{ form_start(delete_form) }}
+        <input class="btn btn-default" type="submit" value="Delete">
+        {{ form_end(delete_form) }}
+    </span>
     <table class="table-responsive table-condensed">
         <tbody>
 
@@ -44,24 +50,10 @@
                 <td>{{ job.email }}</td>
             </tr>
             <tr>
-                <th>Expires at</th>
-                <td>{% if job.expiresAt %}{{ job.expiresAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <th>Posted on</th>
+                <td>{% if job.createdat %}{{ job.expiresAt|date('d/m/Y') }}{% endif %}</td>
             </tr>
         </tbody>
     </table>
-
-    <ul>
-        <li>
-            <a href="{{ path('job_index') }}">Back to the list</a>
-        </li>
-        <li>
-            <a href="{{ path('job_edit', { 'id': job.id }) }}">Edit</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
 
 {% endblock %}

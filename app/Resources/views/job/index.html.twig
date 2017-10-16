@@ -11,37 +11,17 @@
         <table class="table table-striped table-condensed">
             <thead>
             <tr class="text-center">
-                <th>Type</th>
-                <th colspan="2">Company</th>
-                <th>Position</th>
                 <th>Location</th>
-                <th>Description</th>
-                <th>How to apply</th>
-                <th>Email</th>
-                <th>Actions</th>
+                <th>Position</th>
+                <th>Company</th>
             </tr>
             </thead>
             <tbody>
             {% for job in jobs %}
                 <tr>
-                    <td>{{ job.type }}</td>
-                    <td>{{ job.company }}</td>
-                    <td><a href="{{ job.url }}"><img style="width: 130px" src="{{ asset('uploads/jobs/') }}{{ job.logo }}" alt="{{ job.company }}"></a></td>
-                    <td>{{ job.position }}</td>
                     <td>{{ job.location }}</td>
-                    <td>{{ job.description }}</td>
-                    <td>{{ job.howToApply }}</td>
-                    <td>{{ job.email }}</td>
-                    <td>
-                        <ul>
-                            <li>
-                                <a href="{{ path('job_show', { 'id': job.id, 'company': job.companySlug, 'location': job.location, 'position': job.position }) }}">show</a>
-                            </li>
-                            <li>
-                                <a href="{{ path('job_edit', { 'id': job.id }) }}">edit</a>
-                            </li>
-                        </ul>
-                    </td>
+                    <td><a href="{{ path('job_show', { 'id': job.id, 'company': job.companySlug, 'location': job.location, 'position': job.position }) }}">{{ job.position }}</a></td>
+                    <td>{{ job.company }}</td>
                 </tr>
             {% endfor %}
             </tbody>
